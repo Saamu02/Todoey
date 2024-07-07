@@ -97,6 +97,8 @@ extension TodoListViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        itemArray[indexPath.row].done.toggle()
+        
         saveItems()
         
         tableView.deselectRow(at: indexPath, animated: true)
