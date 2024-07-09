@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class CategoryTableViewController: UITableViewController {
+class CategoryTableViewController: SwipeTableViewController {
     
     let realm = try! Realm()
     
@@ -16,9 +16,7 @@ class CategoryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CategoryCell")
-        
+                
         loadCategories()
     }
     
@@ -72,6 +70,20 @@ class CategoryTableViewController: UITableViewController {
         
         self.tableView.reloadData()
     }
+    
+    override func updateModel(at indexPath: IndexPath) {
+        guard let categories else { return }
+        
+        do {
+            
+            try self.realm.write {
+                self.realm.delete(categories[indexPath.row])
+            }
+            
+        } catch {
+            print("Error deleting data from realm, " + error.localizedDescription )
+        }
+    }
 }
 
 extension CategoryTableViewController {
@@ -80,8 +92,12 @@ extension CategoryTableViewController {
         categories?.count ?? 0
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        80
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         cell.textLabel?.text = categories?[indexPath.row].name
         
