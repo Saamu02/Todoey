@@ -11,6 +11,9 @@ import ChameleonFramework
 
 class CategoryTableViewController: SwipeTableViewController {
     
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
+    
     let realm = try! Realm()
     
     var categories: Results<Category>?
@@ -19,6 +22,27 @@ class CategoryTableViewController: SwipeTableViewController {
         super.viewDidLoad()
                 
         loadCategories()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let navBarColor = UIColor(hexString: "1D9BF6")!
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = navBarColor
+        
+
+        let titleAttribute = [
+            NSAttributedString.Key.foregroundColor: UIColor.white
+        ]
+        appearance.titleTextAttributes = titleAttribute
+        appearance.largeTitleTextAttributes = titleAttribute
+
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
