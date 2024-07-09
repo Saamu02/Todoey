@@ -33,6 +33,7 @@ class CategoryTableViewController: SwipeTableViewController {
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = navBarColor
         
+        navigationController?.navigationBar.prefersLargeTitles = true
 
         let titleAttribute = [
             NSAttributedString.Key.foregroundColor: UIColor.white
@@ -40,7 +41,6 @@ class CategoryTableViewController: SwipeTableViewController {
         appearance.titleTextAttributes = titleAttribute
         appearance.largeTitleTextAttributes = titleAttribute
 
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }

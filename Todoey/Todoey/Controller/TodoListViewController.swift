@@ -175,6 +175,9 @@ extension TodoListViewController {
         cell.backgroundColor = backgroundColor
         cell.textLabel?.textColor = ContrastColorOf(backgroundColor!, returnFlat: true)
         
+        cell.accessoryView?.tintColor = ContrastColorOf(backgroundColor!, returnFlat: true)
+        cell.tintColor = ContrastColorOf(backgroundColor!, returnFlat: true)
+        
         return cell
     }
     
@@ -192,6 +195,7 @@ extension TodoListViewController {
             }
         }
         
+        tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
