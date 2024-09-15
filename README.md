@@ -1,5 +1,5 @@
 # Todoey
-The iOS App in UIKit for Data Persistent (In Progress)
+The iOS App in UIKit for Data Persistent
 
 # Important Points:
 - Data persistency through NSCoder (For checking the implementation of NSCoder, please select the branch 'Persistence-through-NSCoder')
